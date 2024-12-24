@@ -57,6 +57,165 @@ void saveRGBPointsToPly(std::shared_ptr<ob::Frame> frame, std::string fileName) 
     fclose(fp);
 }
 
+// Function to configure and enable the color stream
+std::shared_ptr<ob::VideoStreamProfile> configureColorStream(ob::Pipeline &pipeline, std::shared_ptr<ob::Config> config) {
+    std::shared_ptr<ob::VideoStreamProfile> colorProfile = nullptr;
+    try {
+        // Get all stream profiles of the color camera
+        auto colorProfiles = pipeline.getStreamProfileList(OB_SENSOR_COLOR);
+        if (colorProfiles) {
+            // Select the default profile
+            auto profile = colorProfiles->getProfile(OB_PROFILE_DEFAULT);
+            colorProfile = profile->as<ob::VideoStreamProfile>();
+            config->enableStream(colorProfile);
+            std::cout << "Color stream enabled successfully." << std::endl;
+        } else {
+            std::cerr << "No color profiles available for the current device." << std::endl;
+        }
+    } catch (const ob::Error &e) {
+        config->setAlignMode(ALIGN_DISABLE); // Disable alignment if color stream is unavailable
+        std::cerr << "Failed to enable color stream: " << e.getMessage() << std::endl;
+    }
+
+    if (colorProfile) {
+        config->setAlignMode(ALIGN_D2C_HW_MODE); // Enable D2C alignment if color stream is available
+    } else {
+        config->setAlignMode(ALIGN_DISABLE);
+    }
+
+    return colorProfile;
+}
+
+
+// Function to process and save an RGBD PointCloud to a PLY file
+void processAndSaveRGBDPointCloud(ob::Pipeline &pipeline, ob::PointCloudFilter &pointCloud) {
+    try {
+        // Wait for up to 100ms for a frameset in blocking mode
+        auto frameset = pipeline.waitForFrames(100);
+        if (frameset && frameset->depthFrame() && frameset->colorFrame()) {
+            // Scale depth values to millimeters (if necessary)
+            auto depthValueScale = frameset->depthFrame()->getValueScale();
+            pointCloud.setPositionDataScaled(depthValueScale);
+
+            // Generate and save the colored point cloud
+            std::cout << "Generating RGBD PointCloud..." << std::endl;
+            pointCloud.setCreatePointFormat(OB_FORMAT_RGB_POINT);
+            std::shared_ptr<ob::Frame> frame = pointCloud.process(frameset);
+
+            saveRGBPointsToPly(frame, "RGBPoints.ply");
+            std::cout << "RGBPoints.ply saved successfully!" << std::endl;
+        } else {
+            std::cerr << "Failed to retrieve a valid color or depth frame!" << std::endl;
+        }
+    } catch (const std::exception &e) {
+        std::cerr << "Error processing RGBD PointCloud: " << e.what() << std::endl;
+    }
+}
+
+// Function to process and save a Depth PointCloud to a PLY file
+void processAndSaveDepthPointCloud(ob::Pipeline &pipeline, ob::PointCloudFilter &pointCloud) {
+    try {
+        // Wait for up to 100ms for a frameset in blocking mode
+        auto frameset = pipeline.waitForFrames(100);
+        if (frameset && frameset->depthFrame()) {
+            // Scale depth values to millimeters (if necessary)
+            auto depthValueScale = frameset->depthFrame()->getValueScale();
+            pointCloud.setPositionDataScaled(depthValueScale);
+
+            // Generate and save the point cloud
+            std::cout << "Generating Depth PointCloud..." << std::endl;
+            pointCloud.setCreatePointFormat(OB_FORMAT_POINT);
+            std::shared_ptr<ob::Frame> frame = pointCloud.process(frameset);
+
+            savePointsToPly(frame, "DepthPoints.ply");
+            std::cout << "DepthPoints.ply saved successfully!" << std::endl;
+        } else {
+            std::cerr << "Failed to retrieve a valid depth frame!" << std::endl;
+        }
+    } catch (const std::exception &e) {
+        std::cerr << "Error processing Depth PointCloud: " << e.what() << std::endl;
+    }
+}
+
+void intro_prompt() {
+    std::cout << "-----------------------------------------" << std::endl;
+    std::cout << "This sample demonstrates how to create a point cloud from the depth and color streams of a device." << std::endl;
+    std::cout << "The sample will create a point cloud and save it to a PLY file." << std::endl;
+    // operation prompt
+    std::cout << "Press R or r to create RGBD PointCloud and save to ply file! " << std::endl;
+    std::cout << "Press D or d to create Depth PointCloud and save to ply file! " << std::endl;
+    std::cout << "Press ESC to exit! " << std::endl;
+    std::cout << "-----------------------------------------" << std::endl;
+}
+
+// Function to configure and retrieve depth stream profiles
+std::shared_ptr<ob::StreamProfileList> configureDepthStream(ob::Pipeline &pipeline, 
+                                                            std::shared_ptr<ob::VideoStreamProfile> colorProfile, 
+                                                            OBAlignMode &alignMode,
+                                                            std::shared_ptr<ob::Config> config) {
+    std::shared_ptr<ob::StreamProfileList> depthProfileList;
+
+    try {
+        if (colorProfile) {
+            // Try hardware-based Depth-to-Color (D2C) alignment profiles
+            depthProfileList = pipeline.getD2CDepthProfileList(colorProfile, ALIGN_D2C_HW_MODE);
+            if (depthProfileList && depthProfileList->count() > 0) {
+                alignMode = ALIGN_D2C_HW_MODE;
+                std::cout << "Hardware-based D2C alignment enabled." << std::endl;
+            }
+
+            // Try software-based Depth-to-Color (D2C) alignment profiles
+            depthProfileList = pipeline.getD2CDepthProfileList(colorProfile, ALIGN_D2C_SW_MODE);
+            if (depthProfileList && depthProfileList->count() > 0) {
+                alignMode = ALIGN_D2C_SW_MODE;
+                std::cout << "Software-based D2C alignment enabled." << std::endl;
+            }
+
+            std::cerr << "No compatible D2C alignment profiles found. Disabling alignment." << std::endl;
+        }else {
+            depthProfileList = pipeline.getStreamProfileList(OB_SENSOR_DEPTH);
+        }
+
+        // Fallback to default depth profiles if no color alignment is required or supported
+        if (depthProfileList && depthProfileList->count() > 0) {
+            
+            std::shared_ptr<ob::StreamProfile> depthProfile;
+            try {
+                // Select the profile with the same frame rate as color.
+                if(colorProfile) {
+                    depthProfile = depthProfileList->getVideoStreamProfile(OB_WIDTH_ANY, OB_HEIGHT_ANY, OB_FORMAT_ANY, colorProfile->fps());
+                }
+            }
+            catch(...) {
+                depthProfile = nullptr;
+            }
+            if(!depthProfile) {
+                // If no matching profile is found, select the default profile.
+                depthProfile = depthProfileList->getProfile(OB_PROFILE_DEFAULT);
+            }
+            config->enableStream(depthProfile);
+
+        } else {
+            std::cerr << "No depth profiles available for the current device!" << std::endl;
+        }
+
+    } catch (const ob::Error &e) {
+        std::cerr << "Error configuring depth stream: " << e.getMessage() << std::endl;
+        alignMode = ALIGN_DISABLE;
+    }
+
+    config->setAlignMode(alignMode);
+
+    if (depthProfileList && depthProfileList->count() > 0) {
+        std::cout << "Depth stream successfully configured." << std::endl;
+    } else {
+        std::cerr << "Failed to configure depth stream." << std::endl;
+    }
+
+    return depthProfileList;
+}
+
+
 int main(int argc, char **argv) try {
     ob::Context::setLoggerSeverity(OB_LOG_SEVERITY_WARN);
     // create pipeline
@@ -66,62 +225,14 @@ int main(int argc, char **argv) try {
     std::shared_ptr<ob::Config> config = std::make_shared<ob::Config>();
 
     // Turn on D2C alignment, which needs to be turned on when generating RGBD point clouds
-
-    std::shared_ptr<ob::VideoStreamProfile> colorProfile = nullptr;
-    try {
-        // Get all stream profiles of the color camera, including stream resolution, frame rate, and frame format
-        auto colorProfiles = pipeline.getStreamProfileList(OB_SENSOR_COLOR);
-        if(colorProfiles) {
-            auto profile = colorProfiles->getProfile(OB_PROFILE_DEFAULT);
-            colorProfile = profile->as<ob::VideoStreamProfile>();
-        }
-        config->enableStream(colorProfile);
-    }
-    catch(ob::Error &e) {
-        config->setAlignMode(ALIGN_DISABLE);
-        std::cerr << "Current device is not support color sensor!" << std::endl;
-    }
+    std::shared_ptr<ob::VideoStreamProfile> colorProfile = configureColorStream(pipeline, config);
 
     // Get all stream profiles of the depth camera, including stream resolution, frame rate, and frame format
     std::shared_ptr<ob::StreamProfileList> depthProfileList;
     OBAlignMode                            alignMode = ALIGN_DISABLE;
-    if(colorProfile) {
-        // Try find supported depth to color align hardware mode profile
-        depthProfileList = pipeline.getD2CDepthProfileList(colorProfile, ALIGN_D2C_HW_MODE);
-        if(depthProfileList->count() > 0) {
-            alignMode = ALIGN_D2C_HW_MODE;
-        }
-        else {
-            // Try find supported depth to color align software mode profile
-            depthProfileList = pipeline.getD2CDepthProfileList(colorProfile, ALIGN_D2C_SW_MODE);
-            if(depthProfileList->count() > 0) {
-                alignMode = ALIGN_D2C_SW_MODE;
-            }
-        }
-    }
-    else {
-        depthProfileList = pipeline.getStreamProfileList(OB_SENSOR_DEPTH);
-    }
-
-    if(depthProfileList->count() > 0) {
-        std::shared_ptr<ob::StreamProfile> depthProfile;
-        try {
-            // Select the profile with the same frame rate as color.
-            if(colorProfile) {
-                depthProfile = depthProfileList->getVideoStreamProfile(OB_WIDTH_ANY, OB_HEIGHT_ANY, OB_FORMAT_ANY, colorProfile->fps());
-            }
-        }
-        catch(...) {
-            depthProfile = nullptr;
-        }
-
-        if(!depthProfile) {
-            // If no matching profile is found, select the default profile.
-            depthProfile = depthProfileList->getProfile(OB_PROFILE_DEFAULT);
-        }
-        config->enableStream(depthProfile);
-    }
-    config->setAlignMode(alignMode);
+    
+    // Configure depth stream with or without color alignment
+    depthProfileList = configureDepthStream(pipeline, colorProfile, alignMode, config);
 
     // start pipeline with config
     pipeline.start(config);
@@ -134,12 +245,9 @@ int main(int argc, char **argv) try {
     auto cameraParam = pipeline.getCameraParam();
     pointCloud.setCameraParam(cameraParam);
 
-    // operation prompt
-    std::cout << "Press R or r to create RGBD PointCloud and save to ply file! " << std::endl;
-    std::cout << "Press D or d to create Depth PointCloud and save to ply file! " << std::endl;
-    std::cout << "Press ESC to exit! " << std::endl;
+    // Display the operation prompt
+    intro_prompt();
 
-    int count = 0;
     while(true) {
         auto frameset = pipeline.waitForFrames(100);
         if(InputUtils::kbhit()) {
@@ -149,59 +257,10 @@ int main(int argc, char **argv) try {
                 break;
             }
             if(key == 'R' || key == 'r') {
-                count = 0;
-                // Limit up to 10 repetitions
-                while(count++ < 10) {
-                    // Wait for a frame of data, the timeout is 100ms
-                    auto frameset = pipeline.waitForFrames(100);
-                    if(frameset != nullptr && frameset->depthFrame() != nullptr && frameset->colorFrame() != nullptr) {
-                        // point position value multiply depth value scale to convert uint to millimeter (for some devices, the default depth value uint is not
-                        // millimeter)
-                        auto depthValueScale = frameset->depthFrame()->getValueScale();
-                        pointCloud.setPositionDataScaled(depthValueScale);
-                        try {
-                            // Generate a colored point cloud and save it
-                            std::cout << "Save RGBD PointCloud ply file..." << std::endl;
-                            pointCloud.setCreatePointFormat(OB_FORMAT_RGB_POINT);
-                            std::shared_ptr<ob::Frame> frame = pointCloud.process(frameset);
-                            saveRGBPointsToPly(frame, "RGBPoints.ply");
-                            std::cout << "RGBPoints.ply Saved" << std::endl;
-                        }
-                        catch(std::exception &e) {
-                            std::cout << "Get point cloud failed" << std::endl;
-                        }
-                        break;
-                    }
-                    else {
-                        std::cout << "Get color frame or depth frame failed!" << std::endl;
-                    }
-                }
+                processAndSaveRGBDPointCloud(pipeline, pointCloud);
             }
             else if(key == 'D' || key == 'd') {
-                count = 0;
-                // Limit up to 10 repetitions
-                while(count++ < 10) {
-                    // Wait for up to 100ms for a frameset in blocking mode.
-                    auto frameset = pipeline.waitForFrames(100);
-                    if(frameset != nullptr && frameset->depthFrame() != nullptr) {
-                        // point position value multiply depth value scale to convert uint to millimeter (for some devices, the default depth value uint is not
-                        // millimeter)
-                        auto depthValueScale = frameset->depthFrame()->getValueScale();
-                        pointCloud.setPositionDataScaled(depthValueScale);
-                        try {
-                            // generate point cloud and save
-                            std::cout << "Save Depth PointCloud to ply file..." << std::endl;
-                            pointCloud.setCreatePointFormat(OB_FORMAT_POINT);
-                            std::shared_ptr<ob::Frame> frame = pointCloud.process(frameset);
-                            savePointsToPly(frame, "DepthPoints.ply");
-                            std::cout << "DepthPoints.ply Saved" << std::endl;
-                        }
-                        catch(std::exception &e) {
-                            std::cout << "Get point cloud failed" << std::endl;
-                        }
-                        break;
-                    }
-                }
+                processAndSaveDepthPointCloud(pipeline, pointCloud);
             }
         }
     }
