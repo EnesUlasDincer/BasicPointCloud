@@ -1,0 +1,61 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-057d1597d810afe33f7a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.1.15"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "OBPointCloud",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "OBPointCloud::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-OBPointCloud-Debug-36b69c9f3d562d5142d7.json",
+					"name" : "OBPointCloud",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/build",
+		"source" : "/home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

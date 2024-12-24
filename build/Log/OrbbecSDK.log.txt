@@ -1,0 +1,13 @@
+[12/19 14:11:19.101607][warning][35749][ObException.cpp:5] No device found, fail to create pipeline!
+[12/19 14:11:47.138669][warning][35871][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/19 14:11:50.239479][warning][35906][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**10 logs in 3100ms, last: 14:11:48.185183**]
+[12/19 14:11:50.761279][warning][35887][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/19 14:11:53.818134][warning][35927][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**27 logs in 3056ms, last: 14:11:53.491113**]
+[12/19 14:14:27.280759][warning][36524][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/19 14:14:30.381129][warning][36551][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**3 logs in 3100ms, last: 14:14:27.748398**]
+[12/19 14:14:32.248519][warning][36533][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/19 14:14:35.314766][warning][36586][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**16 logs in 3066ms, last: 14:14:33.315209**]
+[12/24 14:23:53.531263][warning][17800][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/24 14:23:56.634062][warning][17840][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**9 logs in 3102ms, last: 14:23:54.580442**]
+[12/24 14:24:00.212924][warning][17835][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/24 14:24:03.279611][warning][17860][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**15 logs in 3066ms, last: 14:24:01.212556**]
