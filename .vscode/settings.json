@@ -46,6 +46,9 @@
         "ostream": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "alignedvector3": "cpp",
+        "span": "cpp",
+        "chrono": "cpp"
     }
 }

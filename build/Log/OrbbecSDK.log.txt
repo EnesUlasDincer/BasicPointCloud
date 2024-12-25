@@ -53,3 +53,75 @@
 [12/24 15:25:40.127721][warning][28099][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
 [12/24 15:27:42.956142][warning][28482][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
 [12/24 15:27:46.058355][warning][28533][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**4 logs in 3102ms, last: 15:27:43.459359**]
+[12/25 17:31:44.580789][warning][21486][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 17:31:47.683035][warning][21541][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**4 logs in 3102ms, last: 17:31:45.084607**]
+[12/25 17:31:55.255237][warning][21518][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 17:36:52.600276][warning][22731][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 17:36:55.700695][warning][22772][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**4 logs in 3100ms, last: 17:36:53.102949**]
+[12/25 17:37:04.863885][warning][22754][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 17:37:07.928829][warning][22754][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**46 logs in 3064ms**]
+[12/25 17:42:10.976474][warning][23551][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 17:42:14.076976][warning][23583][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**3 logs in 3100ms, last: 17:42:11.480402**]
+[12/25 17:42:15.512598][warning][23575][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 17:42:18.519745][warning][23575][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**45 logs in 3007ms**]
+[12/25 17:42:24.581158][warning][23644][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**8 logs in 6061ms, last: 17:42:19.044300**]
+[12/25 17:44:51.528067][warning][23845][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 17:44:54.628583][warning][23897][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**4 logs in 3100ms, last: 17:44:52.029491**]
+[12/25 17:44:59.608579][warning][23884][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 17:45:02.658729][warning][23884][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**46 logs in 3050ms**]
+[12/25 17:45:39.647860][warning][23993][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 17:45:42.748502][warning][24024][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**3 logs in 3100ms, last: 17:45:40.128684**]
+[12/25 17:45:47.161290][warning][24016][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 17:45:50.228670][warning][24071][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**45 logs in 3067ms, last: 17:45:50.159476**]
+[12/25 17:47:29.802876][warning][24229][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 17:47:32.597498][warning][24252][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 17:47:32.903396][warning][24260][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**3 logs in 3100ms, last: 17:47:30.298057**]
+[12/25 17:47:35.664272][warning][24283][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**45 logs in 3066ms, last: 17:47:35.595570**]
+[12/25 17:48:40.483663][warning][24370][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 17:48:43.584123][warning][24401][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**4 logs in 3100ms, last: 17:48:40.993269**]
+[12/25 17:48:45.620255][warning][24393][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 17:48:48.689708][warning][24426][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**38 logs in 3069ms, last: 17:48:48.150811**]
+[12/25 17:58:40.117143][warning][25983][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 17:58:43.217727][warning][26024][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**3 logs in 3100ms, last: 17:58:40.612114**]
+[12/25 17:58:46.840101][warning][26006][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 17:58:49.904139][warning][26006][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**46 logs in 3064ms**]
+[12/25 17:58:50.537030][warning][25983][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 18:05:55.740128][warning][28240][ObLibuvcDevicePort.cpp:51] uvc_open  path=2-6-3.2 already opened
+[12/25 18:05:55.740201][warning][28240][ObLibuvcDevicePort.cpp:54] uvc_open  path=2-6-3.2 failed,return res:$-6
+[12/25 18:06:06.886715][warning][28308][ObLibuvcDevicePort.cpp:51] uvc_open  path=2-6-3.2 already opened
+[12/25 18:06:06.886778][warning][28308][ObLibuvcDevicePort.cpp:54] uvc_open  path=2-6-3.2 failed,return res:$-6
+[12/25 18:06:12.853870][warning][28348][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 18:06:15.954361][warning][28375][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**4 logs in 3100ms, last: 18:06:13.353477**]
+[12/25 18:06:21.156083][warning][28357][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 18:06:24.228744][warning][28411][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**44 logs in 3072ms, last: 18:06:24.087894**]
+[12/25 18:06:25.990347][warning][28410][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**1 logs in 10036ms, last: 18:06:19.990072**]
+[12/25 18:07:25.852957][warning][28639][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 18:07:28.658728][warning][28687][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 18:07:28.953447][warning][28700][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**4 logs in 3100ms, last: 18:07:26.353925**]
+[12/25 18:07:31.716465][warning][28687][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**46 logs in 3057ms**]
+[12/25 18:08:06.812780][warning][28842][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 18:08:09.748974][warning][28879][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 18:08:09.913345][warning][28892][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**4 logs in 3100ms, last: 18:08:07.317682**]
+[12/25 18:08:12.757681][warning][28879][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**45 logs in 3008ms**]
+[12/25 18:09:18.540294][warning][29079][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 18:09:21.640888][warning][29114][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**4 logs in 3100ms, last: 18:09:19.046648**]
+[12/25 18:09:23.087826][warning][29106][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 18:09:26.144555][warning][29139][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**45 logs in 3056ms, last: 18:09:26.087086**]
+[12/25 18:09:58.262299][warning][29259][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 18:10:01.362761][warning][29306][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**4 logs in 3100ms, last: 18:09:58.778123**]
+[12/25 18:10:02.397417][warning][29293][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 18:10:05.457423][warning][29293][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**46 logs in 3060ms**]
+[12/25 18:10:53.222093][warning][29634][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 18:10:54.892021][warning][29671][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 18:10:56.322483][warning][29684][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**4 logs in 3100ms, last: 18:10:53.747985**]
+[12/25 18:10:57.897015][warning][29671][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**45 logs in 3004ms**]
+[12/25 18:27:48.542575][warning][31577][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 18:27:51.643036][warning][31620][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**4 logs in 3100ms, last: 18:27:49.063562**]
+[12/25 18:27:55.733156][warning][31602][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 18:27:58.797223][warning][31602][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**46 logs in 3064ms**]
+[12/25 18:28:03.227389][warning][31577][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 18:29:36.039496][warning][31963][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100
+[12/25 18:29:39.139985][warning][32009][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100 [**4 logs in 3100ms, last: 18:29:36.563402**]
+[12/25 18:29:43.909394][warning][32001][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame!
+[12/25 18:29:46.970676][warning][32030][Pipeline.cpp:341] Pipeline source frameset queue fulled, drop the oldest frame! [**34 logs in 3061ms, last: 18:29:46.176490**]
+[12/25 18:29:50.393748][warning][31963][Pipeline.cpp:377] Wait for frame timeout, you can try to increase the wait time! current timeout=100

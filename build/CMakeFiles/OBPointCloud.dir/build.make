@@ -108,6 +108,7 @@ OBPointCloud_EXTERNAL_OBJECTS =
 OBPointCloud: CMakeFiles/OBPointCloud.dir/src/PointCloud.cpp.o
 OBPointCloud: CMakeFiles/OBPointCloud.dir/src/funcs.cpp.o
 OBPointCloud: CMakeFiles/OBPointCloud.dir/build.make
+OBPointCloud: /usr/lib/x86_64-linux-gnu/libtbb.so.12.11
 OBPointCloud: /home/enes/Desktop/ORBBEC/OrbbecSDK/lib/linux_x64/libOrbbecSDK.so
 OBPointCloud: /home/enes/Desktop/ORBBEC/OrbbecSDK/lib/linux_x64/libdepthengine.so
 OBPointCloud: /home/enes/Desktop/ORBBEC/OrbbecSDK/lib/linux_x64/libob_usb.so

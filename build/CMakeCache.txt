@@ -223,6 +223,9 @@ OBPointCloud_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 OBPointCloud_SOURCE_DIR:STATIC=/home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test
 
+//The directory containing a CMake configuration file for TBB.
+TBB_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/TBB
+
 
 ########################
 # INTERNAL cache entries

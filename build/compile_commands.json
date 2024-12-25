@@ -1,13 +1,13 @@
 [
 {
   "directory": "/home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/build",
-  "command": "/usr/bin/c++  -I/home/enes/Desktop/ORBBEC/OrbbecSDK/include -I/home/enes/Desktop/ORBBEC/OrbbecSDK/include/libobsensor/hpp -I/home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/build/include -I/home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/include -g -o CMakeFiles/OBPointCloud.dir/src/PointCloud.cpp.o -c /home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/src/PointCloud.cpp",
+  "command": "/usr/bin/c++ -DTBB_USE_DEBUG -I/home/enes/Desktop/ORBBEC/OrbbecSDK/include -I/home/enes/Desktop/ORBBEC/OrbbecSDK/include/libobsensor/hpp -I/home/enes/Desktop/PhD/Repos/eigen -I/home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/build/include -I/home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/include -g -o CMakeFiles/OBPointCloud.dir/src/PointCloud.cpp.o -c /home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/src/PointCloud.cpp",
   "file": "/home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/src/PointCloud.cpp",
   "output": "CMakeFiles/OBPointCloud.dir/src/PointCloud.cpp.o"
 },
 {
   "directory": "/home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/build",
-  "command": "/usr/bin/c++  -I/home/enes/Desktop/ORBBEC/OrbbecSDK/include -I/home/enes/Desktop/ORBBEC/OrbbecSDK/include/libobsensor/hpp -I/home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/build/include -I/home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/include -g -o CMakeFiles/OBPointCloud.dir/src/funcs.cpp.o -c /home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/src/funcs.cpp",
+  "command": "/usr/bin/c++ -DTBB_USE_DEBUG -I/home/enes/Desktop/ORBBEC/OrbbecSDK/include -I/home/enes/Desktop/ORBBEC/OrbbecSDK/include/libobsensor/hpp -I/home/enes/Desktop/PhD/Repos/eigen -I/home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/build/include -I/home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/include -g -o CMakeFiles/OBPointCloud.dir/src/funcs.cpp.o -c /home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/src/funcs.cpp",
   "file": "/home/enes/Desktop/ORBBEC/Orbbec_Codes/Camera_test/src/funcs.cpp",
   "output": "CMakeFiles/OBPointCloud.dir/src/funcs.cpp.o"
 }
